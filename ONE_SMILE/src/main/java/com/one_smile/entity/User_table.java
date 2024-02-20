@@ -25,13 +25,16 @@ public class User_table {
 	
 	@Enumerated(EnumType.STRING)
 	private User_role role;
+	
+	String question;
+	String answer;
 
 	public User_table() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public User_table(Integer uid, String uname, String password, String firstname, String lastname, String email,
-			long mobileno, User_role role) {
+			long mobileno, User_role role, String question, String answer) {
 		super();
 		this.uid = uid;
 		Uname = uname;
@@ -41,6 +44,8 @@ public class User_table {
 		this.email = email;
 		this.mobileno = mobileno;
 		this.role = role;
+		this.question = question;
+		this.answer = answer;
 	}
 
 	public Integer getUid() {
@@ -95,7 +100,7 @@ public class User_table {
 		return mobileno;
 	}
 
-	public void setMobileno(int mobileno) {
+	public void setMobileno(long mobileno) {
 		this.mobileno = mobileno;
 	}
 
@@ -107,13 +112,29 @@ public class User_table {
 		this.role = role;
 	}
 
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
 	@Override
 	public String toString() {
 		return "User_table [uid=" + uid + ", Uname=" + Uname + ", password=" + password + ", firstname=" + firstname
-				+ ", Lastname=" + Lastname + ", email=" + email + ", mobileno=" + mobileno + ", role=" + role + "]";
+				+ ", Lastname=" + Lastname + ", email=" + email + ", mobileno=" + mobileno + ", role=" + role
+				+ ", question=" + question + ", answer=" + answer + "]";
 	}
-	
-	
+
 	
 	
 }

@@ -25,16 +25,20 @@ public class Examinations {
 	
 	String treatment_notes;
 	
+	int charges;
+	
 	public Examinations() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Examinations(Integer eid, Appointments appointments, String treatment_name, String treatment_notes) {
+	public Examinations(Integer eid, Appointments appointments, String treatment_name, String treatment_notes,
+			int charges) {
 		super();
 		this.eid = eid;
 		this.appointments = appointments;
 		this.treatment_name = treatment_name;
 		this.treatment_notes = treatment_notes;
+		this.charges = charges;
 	}
 
 	public Integer getEid() {
@@ -69,10 +73,18 @@ public class Examinations {
 		this.treatment_notes = treatment_notes;
 	}
 
+	public int getCharges() {
+		return charges;
+	}
+
+	public void setCharges(int charges) {
+		this.charges = charges;
+	}
+
 	@Override
 	public String toString() {
 		return "Examinations [eid=" + eid + ", appointments=" + appointments + ", treatment_name=" + treatment_name
-				+ ", treatment_notes=" + treatment_notes + "]";
+				+ ", treatment_notes=" + treatment_notes + ", charges=" + charges + "]";
 	}
 
 	

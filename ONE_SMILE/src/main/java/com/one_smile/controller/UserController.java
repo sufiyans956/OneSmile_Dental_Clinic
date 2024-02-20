@@ -7,12 +7,19 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.one_smile.entity.Appointments;
 import com.one_smile.entity.User_role;
 import com.one_smile.entity.User_table;
 import com.one_smile.services.UserService;
+
+import Exceptions.EnquiryExceptions;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @CrossOrigin
 @RestController
@@ -39,6 +46,26 @@ public class UserController {
 		        us.setRole(userrole.patient);
 		    }
 		return userService.adduser(us);
+	}
+	
+	@PutMapping("/updateuserpass/{email}")
+	public User_table updatePassword(@PathVariable String email, @RequestBody User_table updatedUser) {
+		User_table existuser = userService.getuserbyemail(email);
+		
+		
+		return userService.updatepassword(existuser, updatedUser);
+	
+	}
+	
+	@GetMapping("/oneuser/{id}")
+	public User_table getOneUser (@PathVariable Integer id) {
+		User_table foundUser = userService.getOneuser(id);
+		if (foundUser == null)
+		{
+			EnquiryExceptions exp = new EnquiryExceptions("User Does not exits");
+			throw exp;
+		}
+		return foundUser;
 	}
 	
 	
