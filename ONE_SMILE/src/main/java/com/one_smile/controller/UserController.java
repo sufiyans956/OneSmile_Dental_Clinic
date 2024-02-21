@@ -68,6 +68,15 @@ public class UserController {
 		return foundUser;
 	}
 	
+	@PostMapping("/adddoctor")
+	public User_table adddoctor(@RequestBody User_table us) {
+		//TODO: process POST request
+		 if (us.getRole() == null) {
+		        us.setRole(userrole.doctor);
+		    }
+		return userService.adduser(us);
+	}
+	
 	
 	
 	
