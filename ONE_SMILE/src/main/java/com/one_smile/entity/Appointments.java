@@ -1,6 +1,7 @@
 package com.one_smile.entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,8 @@ public class Appointments {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer App_id;
-	String date;
-	String time;
+	LocalDate date;
+	LocalTime time;
 	String notes;
 	
 
@@ -38,7 +39,8 @@ public class Appointments {
 
 
 
-	public Appointments(Integer app_id, String date, String time, String notes, User_table usertable, String status) {
+	public Appointments(Integer app_id, LocalDate date, LocalTime time, String notes, User_table usertable,
+			String status) {
 		super();
 		App_id = app_id;
 		this.date = date;
@@ -62,25 +64,25 @@ public class Appointments {
 
 
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
 
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
 
 
-	public String getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
 
 
-	public void setTime(String time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 
@@ -128,7 +130,8 @@ public class Appointments {
 				+ ", usertable=" + usertable + ", status=" + status + "]";
 	}
 
-	
+
+
 	
 	
 

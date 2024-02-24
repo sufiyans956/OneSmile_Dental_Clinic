@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.one_smile.entity.Appointments;
@@ -18,6 +19,8 @@ public class UserService {
 @Autowired
 private UserRepository userRepo;
 
+@Autowired
+private PasswordEncoder encoder;
 
 public Collection<User_table> getAllUsers(){
 	
@@ -26,11 +29,13 @@ public Collection<User_table> getAllUsers(){
 }
 
 public User_table adduser(User_table user) {
+	user.setPassword(encoder.encode(user.getPassword()));
 	return userRepo.save(user);
 }
 
 public User_table updatepassword(User_table olduser, User_table newuser) {
-	olduser.setPassword(newuser.getPassword());
+	
+	olduser.setPassword(encoder.encode(newuser.getPassword()));
 	userRepo.save(olduser);
 	return olduser;
 }
@@ -42,6 +47,7 @@ public User_table getOneuser(Integer id) {
 		founduser = getOneuser.get();
 	return founduser;
 }
+
 
 public User_table getuserbyemail(String s) {
 	

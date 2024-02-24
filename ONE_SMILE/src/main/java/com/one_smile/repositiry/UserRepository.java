@@ -8,7 +8,7 @@ public interface UserRepository extends JpaRepository<User_table, Integer> {
 	
 	public User_table findByEmail(String s);
 		
-
+	User_table findByUname(String s);
 	
 
 }

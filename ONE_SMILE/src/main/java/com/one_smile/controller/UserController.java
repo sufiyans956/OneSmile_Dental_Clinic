@@ -3,6 +3,8 @@ package com.one_smile.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.one_smile.entity.Appointments;
 import com.one_smile.entity.User_role;
 import com.one_smile.entity.User_table;
+import com.one_smile.services.LoginService;
 import com.one_smile.services.UserService;
 
 import Exceptions.EnquiryExceptions;
@@ -26,11 +29,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/user")
 public class UserController {
 
-	
+	@Autowired
+	private PasswordEncoder encoder;
 	@Autowired
 	private UserService userService;
 	
 	private User_role userrole;
+	
+	@Autowired
+	private LoginService loginservice;
 	
 	@GetMapping("/alluser")
 	public Collection<User_table> getalluser(){
@@ -74,7 +81,16 @@ public class UserController {
 		 if (us.getRole() == null) {
 		        us.setRole(userrole.doctor);
 		    }
+		 us.setPassword(encoder.encode(us.getPassword()));
 		return userService.adduser(us);
+	}
+	
+	
+	@PostMapping("/authuser")
+	public ResponseEntity<User_table> authuser(@RequestBody User_table usera) {
+		
+	return	loginservice.Authuser(usera);
+		
 	}
 	
 	

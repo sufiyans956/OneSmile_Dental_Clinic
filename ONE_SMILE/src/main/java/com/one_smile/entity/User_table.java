@@ -16,7 +16,7 @@ public class User_table {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer uid;
-	String Uname;
+	String uname;
 	String password;
 	String firstname;
 	String Lastname;
@@ -37,7 +37,7 @@ public class User_table {
 			long mobileno, User_role role, String question, String answer) {
 		super();
 		this.uid = uid;
-		Uname = uname;
+		this.uname = uname;
 		this.password = password;
 		this.firstname = firstname;
 		Lastname = lastname;
@@ -57,11 +57,11 @@ public class User_table {
 	}
 
 	public String getUname() {
-		return Uname;
+		return uname;
 	}
 
 	public void setUname(String uname) {
-		Uname = uname;
+		this.uname = uname;
 	}
 
 	public String getPassword() {
@@ -130,7 +130,7 @@ public class User_table {
 
 	@Override
 	public String toString() {
-		return "User_table [uid=" + uid + ", Uname=" + Uname + ", password=" + password + ", firstname=" + firstname
+		return "User_table [uid=" + uid + ", Uname=" + uname + ", password=" + password + ", firstname=" + firstname
 				+ ", Lastname=" + Lastname + ", email=" + email + ", mobileno=" + mobileno + ", role=" + role
 				+ ", question=" + question + ", answer=" + answer + "]";
 	}
