@@ -21,13 +21,13 @@ public class PaymentsService {
 	public Collection<Payments> getallpayments() {
 
 		Collection<Payments> allpay = prepo.findAll();
+		
 
 		return allpay;
 	}
 
 	public Payments addPayments(Payments payApp) {
-		payApp.setPayStatus("pending");
-
+		
 		return prepo.save(payApp);
 	}
 
@@ -45,5 +45,7 @@ public class PaymentsService {
 		System.out.println(foundPayment);
 		return foundPayment;
 	}
+	
+	
 
 }

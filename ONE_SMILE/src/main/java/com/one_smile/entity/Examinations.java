@@ -27,18 +27,21 @@ public class Examinations {
 	
 	int charges;
 	
+    String paymentstatus;
+	
 	public Examinations() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Examinations(Integer eid, Appointments appointments, String treatment_name, String treatment_notes,
-			int charges) {
+			int charges, String paymentstatus) {
 		super();
 		this.eid = eid;
 		this.appointments = appointments;
 		this.treatment_name = treatment_name;
 		this.treatment_notes = treatment_notes;
 		this.charges = charges;
+		this.paymentstatus = paymentstatus;
 	}
 
 	public Integer getEid() {
@@ -81,10 +84,19 @@ public class Examinations {
 		this.charges = charges;
 	}
 
+	public String getPaymentstatus() {
+		return paymentstatus;
+	}
+
+	public void setPaymentstatus(String paymentstatus) {
+		this.paymentstatus = paymentstatus;
+	}
+
 	@Override
 	public String toString() {
 		return "Examinations [eid=" + eid + ", appointments=" + appointments + ", treatment_name=" + treatment_name
-				+ ", treatment_notes=" + treatment_notes + ", charges=" + charges + "]";
+				+ ", treatment_notes=" + treatment_notes + ", charges=" + charges + ", paymentstatus=" + paymentstatus
+				+ "]";
 	}
 
 	

@@ -38,5 +38,10 @@ public class ExaminationService {
 	   
    }
    
+   public Integer  findpendingpay(Integer uid) { 
+       Integer sum = examrepo.findpendingpayments(uid); 
+       return sum; 
+   } 
+   
    
 }

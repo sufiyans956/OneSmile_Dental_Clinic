@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,9 @@ public class ExaminationController {
 
 	@Autowired
 	private AppointmentService edp;
-	
+
 	@Autowired
 	private PaymentsService paymentserv;
-	
-	
-   
 
 	@GetMapping("/allexamination")
 	public Collection<Examinations> getalluser() {
@@ -48,7 +46,6 @@ public class ExaminationController {
 
 	@PostMapping("/addexamination")
 	public Examinations addappointmnet(@RequestBody Examinations ex) {
-
 		Examinations id = exseervice.addexamination(ex);
 
 		Integer appid = id.getAppointments().getApp_id();
@@ -59,28 +56,42 @@ public class ExaminationController {
 
 		edp.addappointmnets(yg);
 //		------------------------------------------------------------
+
+		Integer examid = id.getEid();
+		Integer charges = id.getCharges();
+		System.out.println(charges);
+		System.out.println(examid);
+
 		
-		    
-		    Integer examid = id.getEid();
-		    Integer charges = id.getCharges();
-		    System.out.println(charges);
-		    System.out.println(examid);
-		    
-Payments ps= new Payments();
-ps.setCharges(charges);
-ps.setExaminations(ex);
-		    
-		    paymentserv.addPayments(ps);
-		    
-		   
-		
-//		newex.setEid(examid);
-//		pay.setCharges(charges); 
-//		pay.setExaminations(newex);
-//		payser.addPayments(pay);
-		
+	//	--------------------------------------------------
+		System.out.println(ex.getPaymentstatus());
+		if(ex.getPaymentstatus().equals("completed")) {
+			Payments ps = new Payments();
+			ps.setCharges(charges);
+			ps.setExaminations(ex);
+			ps.setPayStatus("completed");
+			paymentserv.addPayments(ps);
+			
+		}
+		if(ex.getPaymentstatus().equals("pending")) {
+			Payments ps = new Payments();
+			ps.setCharges(charges);
+			ps.setExaminations(ex);
+			ps.setPayStatus("pending");
+			paymentserv.addPayments(ps);
+			
+		}
+
+
 		return id;
 
 	}
+//	-----------------------------------------------------------------------------------------------------------
+	@GetMapping("/pendingcharges/{uid}")
+	public Integer getallpendingchar(@PathVariable Integer uid) {
+		Integer getsum=exseervice.findpendingpay(uid);
+		return getsum;
+	}
+	
 
 }
