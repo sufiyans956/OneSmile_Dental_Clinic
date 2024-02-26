@@ -13,5 +13,4 @@ public interface ExaminationRepository extends JpaRepository<Examinations, Integ
 	        value= "SELECT sum(e.charges) AS pending_charges FROM examinations e JOIN payments p ON e.eid = p.exam_id JOIN appointments a ON e.app_id = a.app_id WHERE p.pay_status = 'pending' AND a.uid =:userid") 
 	      Integer findpendingpayments(@Param("userid") Integer userid); 
 	
-
 }

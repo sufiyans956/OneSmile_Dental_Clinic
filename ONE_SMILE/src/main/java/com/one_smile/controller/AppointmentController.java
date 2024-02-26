@@ -3,6 +3,7 @@ package com.one_smile.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,7 +37,7 @@ public class AppointmentController {
 	
 	
 	@PostMapping("/addappointment")
-	public Appointments addappointmnet(@RequestBody Appointments app) {
+	public ResponseEntity<Appointments> addappointmnet(@RequestBody Appointments app) {
 		app.setStatus("Pending");
 		return appservice.addappointmnets(app);
 	}
